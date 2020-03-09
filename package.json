@@ -10,7 +10,9 @@
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-scripts": "3.4.0",
-    "reactstrap": "^8.4.1"
+    "reactstrap": "^8.4.1",
+    "react-router-dom": "^4.2.2",
+    "react-google-maps": "*"
   },
   "scripts": {
     "start": "react-scripts start",

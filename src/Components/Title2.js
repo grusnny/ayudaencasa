@@ -8,13 +8,10 @@ export default () => {
                 <Col xs="12">
                     <Jumbotron className='text-center'>
                         <h1 className="display-5">
-                            Inicie sesión en
-                    </h1>
-                    <h1 className="display-5">
-                            AyudaEnCasa
+                            Registro mediante correo
                     </h1>
                         <p className="lead">
-                            Ingrese por alguno de los siguientes metodos
+                            Todos los campos son obligatorios
                     </p>
                     </Jumbotron>
                 </Col>
