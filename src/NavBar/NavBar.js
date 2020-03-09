@@ -16,10 +16,10 @@ class NavBar extends Component {
               <a class="nav-link" href="/home">Home<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/page2">Features</a>
+              <a class="nav-link" href="/page2">Menu2</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Pricing</a>
+              <a class="nav-link" href="#">Menu3</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/loginp">Login</a>
