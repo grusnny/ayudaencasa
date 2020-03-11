@@ -11,7 +11,6 @@ function Loginp() {
   const [workerMail, setWorkerMail] = React.useState()
   const [workerTelephone, setWorkerTelephone] = React.useState()
   const [workerExperience, setWorkerExperience] = React.useState()
-  const [workerCity, setWorkerCity] = React.useState()
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -24,10 +23,6 @@ function Loginp() {
 
   const onCreate = () => {
     const db = firebase.firestore()
-    //const e = document.getElementById("exampleSpecialty");
-    //workerSpecialty = e.options[e.selectedIndex].text;
-    //e = document.getElementById("exampleCity");
-    //workerCity = e.options[e.selectedIndex].text;
     db.collection('worker').add({ name: workerName, mail: workerMail, telephone: workerTelephone, experience: workerExperience })
 
   }
@@ -57,15 +52,7 @@ function Loginp() {
               <Label for="exampleExperience">Experiencia</Label>
               <Input name="experience" id="exampleExperience"
                 value={workerExperience} onChange={(e) => setWorkerExperience(e.target.value)} />
-            </FormGroup>
-            <FormGroup>
-              <Label for="exampleCity">Seleccione una ciudad </Label>
-              <select id="exampleCity">
-                <option value="ID001">Bello</option>
-                <option value="ID002" selected>Medellín</option>
-                <option value="ID003">Envigado</option>
-              </select>
-            </FormGroup>
+            </FormGroup>            
             <Button onClick={onCreate}>Registrar trabajador</Button>
           </Form>
           {worker.map(worker => (

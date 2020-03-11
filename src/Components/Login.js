@@ -20,7 +20,7 @@ export default class Login extends Component{
         return(
             <Container className='text-center'>
                 <div>
-                    <button type="button" class="btn btn-outline-primary" onClick={this.Login}><img src="./icons/google.gif" alt="x"/>  Iniciar sesión con google</button>
+                    <button type="button" class="btn btn-outline-primary" onClick={this.Login}>Iniciar sesión con google</button>
                 </div>
             </Container>  
         )

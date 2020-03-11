@@ -7,7 +7,7 @@ import Login from '../Components/Login';
 
 function finalizar() {
   // realizas tu acción de envíar los datos, y al final redireccionas
-  this.props.history.push({to: '/logincorreo'});
+  this.props.history.push({to: '/Categories'});
 }
 
 function Loginp() {
@@ -26,7 +26,7 @@ function Loginp() {
             <FormGroup>             
               <Container className='text-center'>
                 <form action="/logincorreo">
-                    <button type="submit" class="btn btn-outline-primary"><img src="" alt="x"/> Correo electronico</button>
+                    <button type="submit" class="btn btn-outline-primary"> Correo electronico</button>
                 </form>
             </Container>  
             </FormGroup>
