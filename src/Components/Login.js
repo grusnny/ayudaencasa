@@ -7,13 +7,16 @@ export default class Login extends Component{
     constructor(props){
         super(props);
         this.Login=this.Login.bind(this);
+ 
     }
 
     Login(){
         let provider= new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithPopup(provider).then(result=>{
-            console.log(result);
+            //console.log(result);
+            console.log(JSON.stringify(result));
             window.location.href="/logincorreo";
+            localStorage.setItem("data", JSON.stringify(result));
         })
     }
 

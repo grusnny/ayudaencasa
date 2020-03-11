@@ -4,6 +4,10 @@ import Title2 from '../Components/Title2';
 import firebase from "../firebase";
 import { Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { CardWorker } from './CardWorker';
+
+var dataFromlocalStorage = JSON.parse(localStorage.getItem("data"));
+console.log(dataFromlocalStorage);
+
 function Loginp() {
 
   const [worker, setWorker] = React.useState([])
