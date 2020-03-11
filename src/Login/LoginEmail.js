@@ -5,8 +5,10 @@ import firebase from "../firebase";
 import { Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { CardWorker } from './CardWorker';
 
-var dataFromlocalStorage = JSON.parse(localStorage.getItem("data"));
-console.log(dataFromlocalStorage);
+var dataFromlocalStorage = JSON.parse(localStorage.getItem("data"))
+console.info(dataFromlocalStorage);
+
+
 
 function Loginp() {
 
