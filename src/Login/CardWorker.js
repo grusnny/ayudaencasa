@@ -31,8 +31,7 @@ export const CardWorker = ({ worker }) => {
                         <CardTitle>Nombre: {name}</CardTitle>
                         <CardSubtitle>Correo: {mail}</CardSubtitle>
                         <CardSubtitle>Telefono: {telephone}</CardSubtitle>
-                        <CardText>Experiencia: {experience}</CardText>
-                        <Button color="danger" onClick={onDelete} >Eliminar</Button>
+                        <CardText>Experiencia: {experience}</CardText>                        
                     </CardBody>
                 </Card>
             </div>

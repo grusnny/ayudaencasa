@@ -16,7 +16,7 @@ function Loginp() {
   React.useEffect(() => {
     const fetchData = async () => {
       const db = firebase.firestore()
-      const data = await db.collection('worker').get()
+      const data = await db.collection('worker').where('experience', '==', 'Electricista').get()
       setWorker(data.docs.map(doc => ({ ...doc.data(), id: doc.id })))
     }
     fetchData()

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import NavBar from './NavBar/NavBar';
 import Home from './Home/Home';
+import Categories from './Home/Categories'
 import Loginp from './Login/Loginp';
 import Page2 from './Page2/Page2';
 import LoginEmail from "./Login/LoginEmail";
@@ -24,6 +25,10 @@ class App extends Component {
               exact
               path="/loginp"
               render={() => <Loginp name="Iniciar Sesión" />} />
+              <Route
+              exact
+              path="/Categories"
+              render={() => <Categories />} />
             <Route
               exact
               path="/page2"
