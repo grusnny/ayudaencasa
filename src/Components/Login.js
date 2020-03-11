@@ -13,6 +13,7 @@ export default class Login extends Component{
         let provider= new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithPopup(provider).then(result=>{
             console.log(result);
+            window.location.href="/logincorreo";
         })
     }
 
@@ -20,7 +21,9 @@ export default class Login extends Component{
         return(
             <Container className='text-center'>
                 <div>
+
                     <button type="button" class="btn btn-outline-primary" onClick={this.Login}>Iniciar sesión con google</button>
+
                 </div>
             </Container>  
         )
