@@ -14,7 +14,9 @@ function App() {
                             <CardImg src="https://firebasestorage.googleapis.com/v0/b/ayudaencasa-38fe2.appspot.com/o/electricLogo.png?alt=media&token=34953d4f-b887-4657-84b1-b942598eefbc"/>
                             <CardBody>
                                 <CardText>Profesionales relacionados a los temas de electricidad.</CardText>
-                                <Button>Electricistas</Button>
+                                <form action="/home">
+                                <button type="submit" class="btn btn-outline-primary"> Electricistas</button>
+                                </form>
                             </CardBody>
                         </Card>
                         
@@ -26,7 +28,9 @@ function App() {
                             <CardImg src="https://firebasestorage.googleapis.com/v0/b/ayudaencasa-38fe2.appspot.com/o/waterLogo.png?alt=media&token=d7a57e90-d23c-43f2-a6aa-9b71af37bedd"/>
                             <CardBody>
                                 <CardText>Profesionales relacionados a los temas de tuberia o flujo del agua.</CardText>
-                                <Button>Plomeros</Button>
+                                <form action="/home">
+                                    <button type="submit" class="btn btn-outline-primary"> Plomeros</button>
+                                </form>
                             </CardBody>
                         </Card>
                         
@@ -38,7 +42,9 @@ function App() {
                             <CardImg src="https://firebasestorage.googleapis.com/v0/b/ayudaencasa-38fe2.appspot.com/o/wallLogo.png?alt=media&token=ae683fcf-7b7b-47e5-903d-4c11ad1958be"/>
                             <CardBody>
                                 <CardText>Profesionales relacionados a los temas de construcción o reforma.</CardText>
-                                <Button>Albañiles</Button>
+                                <form action="/home">
+                                <button type="submit" class="btn btn-outline-primary"> Albañiles</button>
+                                </form>
                             </CardBody>
                         </Card>
                         
