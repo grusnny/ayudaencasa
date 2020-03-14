@@ -25,9 +25,7 @@ function Loginp() {
             </FormGroup>
             <FormGroup>             
               <Container className='text-center'>
-                <form action="/logincorreo">
-                    <button type="submit" class="btn btn-outline-primary"> Correo electronico</button>
-                </form>
+                
             </Container>  
             </FormGroup>
           </Form>

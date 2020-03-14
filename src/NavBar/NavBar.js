@@ -16,13 +16,13 @@ class NavBar extends Component {
               <a class="nav-link" href="/categorias">Home<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/page2">Menu2</a>
+              <a class="nav-link" href="/MyAccount">Mi Cuenta</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Menu3</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/loginp">Login</a>
+              <a class="nav-link" href="/loginp">Registrarse</a>
             </li>
           </ul>
           <form class="form-inline my-2 my-lg-0">
@@ -45,7 +45,7 @@ export default NavBar;
     <Link to="/page1" className="link">Página 1</Link>
   </div>
   <div className="link-container">
-    <Link to="/page2" className="link">Página 2</Link>
+    <Link to="/MyAccount" className="link">Página 2</Link>
   </div>
 </Container>
 </div> */
