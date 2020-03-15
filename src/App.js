@@ -5,7 +5,7 @@ import Categories from './Home/Categories'
 import Home from './Home/Home';
 import Loginp from './Login/Loginp';
 import MyAccount from './MyAccount/MyAccount';
-import LoginEmail from "./Login/LoginEmail";
+import LoginForm from "./Login/LoginForm";
 import PageError from './PageError/PageError';
 import './App.css';
 
@@ -37,7 +37,7 @@ class App extends Component {
             <Route
               exact
               path="/logincorreo"
-              render={() => <LoginEmail />} />
+              render={() => <LoginForm />} />
             <Route component={PageError} />
           </Switch>
         </div>
