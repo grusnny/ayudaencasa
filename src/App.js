@@ -26,8 +26,7 @@ class App extends Component {
               exact
               path="/loginp"
               render={() => <Loginp name="Iniciar Sesión" />} />
-               <Route
-              exact
+            <Route
               path="/google1451de0be53d1b60.html ."
               render={() => <google1451de0be53d1b60.html name="Iniciar Sesión" />} />
             <Route
