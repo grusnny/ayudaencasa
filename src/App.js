@@ -4,8 +4,8 @@ import NavBar from './NavBar/NavBar';
 import Categories from './Home/Categories'
 import Home from './Home/Home';
 import Loginp from './Login/Loginp';
-import Page2 from './Page2/Page2';
-import LoginEmail from "./Login/LoginEmail";
+import MyAccount from './MyAccount/MyAccount';
+import LoginForm from "./Login/LoginForm";
 import PageError from './PageError/PageError';
 import './App.css';
 
@@ -28,8 +28,8 @@ class App extends Component {
               render={() => <Loginp name="Iniciar Sesión" />} />
             <Route
               exact
-              path="/page2"
-              render={() => <Page2 />} />
+              path="/MyAccount"
+              render={() => <MyAccount />} />
             <Route
               exact
               path="/home"
@@ -37,7 +37,7 @@ class App extends Component {
             <Route
               exact
               path="/logincorreo"
-              render={() => <LoginEmail />} />
+              render={() => <LoginForm />} />
             <Route component={PageError} />
           </Switch>
         </div>
