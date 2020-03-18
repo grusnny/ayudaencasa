@@ -8,6 +8,7 @@ import MyAccount from './MyAccount/MyAccount';
 import LoginForm from "./Login/LoginForm";
 import PageError from './PageError/PageError';
 import './App.css';
+import html, {google1451de0be53d1b60} from 'google1451de0be53d1b60';
 
 class App extends Component {
   render() {
@@ -27,8 +28,8 @@ class App extends Component {
               path="/loginp"
               render={() => <Loginp name="Iniciar Sesión" />} />
             <Route
-              path="/google1451de0be53d1b60.html ."
-              render={() => <google1451de0be53d1b60.html name="Iniciar Sesión" />} />
+              path="/google1451de0be53d1b60.html"
+              component={google1451de0be53d1b60}/>
             <Route
               exact
               path="/MyAccount"
@@ -48,4 +49,5 @@ class App extends Component {
     );
   }
 }
+import { Form } from 'reactstrap';
 export default App;
