@@ -45,5 +45,4 @@ class App extends Component {
     );
   }
 }
-import { Form } from 'reactstrap';
 export default App;
