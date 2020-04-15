@@ -13,30 +13,30 @@ function Loginp() {
 
   const [userTel, setUserTel] = React.useState()
   const [userMailAlt, setUserMailAlt] = React.useState()
+  const db = firebase.firestore()
 
   const onCreate = () => {
-    // const db = firebase.firestore()
-    // var user = firebase.auth().currentUser;
-    // var nameT, emailT, photoUrlT, uidT, emailVerifiedT;
+    var user = firebase.auth().currentUser;
+    while (user == null) {
+     user = firebase.auth().currentUser;    
+    }
+    var nameT, emailT, photoUrlT, uidT, emailVerifiedT;
+    if (user != null) {
+      nameT = user.displayName;
+      emailT = user.email;
+      photoUrlT = user.photoURL;
+      emailVerifiedT = user.emailVerified;
+      uidT = user.uid;
 
-
-    // if (user != null) {
-    //   nameT = user.displayName;
-    //   emailT = user.email;
-    //   photoUrlT = user.photoURL;
-    //   emailVerifiedT = user.emailVerified;
-    //   uidT = user.uid;
-    //   const db = firebase.firestore()
-    //   let json = {
-    //     uId: uidT,
-    //     name: nameT,
-    //     mail: emailT,
-    //     telephone: userTel,
-    //     photo: photoUrlT,
-    //     mailAlt: userMailAlt
-    //   };
-    //   db.collection('user').doc(uidT).set(json);
-    // }
+      const querystring = require('querystring');
+      axios.post('https://microservicio-autenticacion.herokuapp.com/user', querystring.stringify({ 
+      mail: user.email, 
+      mailAlt: userMailAlt,
+      name: user.displayName, 
+      photo: user.photoURL, 
+      telephone: userTel, 
+      uId: user.uid }));
+    }
     /*axios.get('https://microservicio-autenticacion.herokuapp.com/user', {
       params: {
         user: 'pedro' ,
@@ -52,10 +52,6 @@ function Loginp() {
     .then(function () {
       // always executed
     }); */
-    const querystring = require('querystring');
-    axios.post('https://microservicio-autenticacion.herokuapp.com/user', querystring.stringify({ user: 'pedro', password: '123' }));
-    
-
   }
 
   return (
@@ -74,12 +70,16 @@ function Loginp() {
               <Input type="email" name="mailAlt" id="exampleMailAlt"
                 value={userMailAlt} onChange={(e) => setUserMailAlt(e.target.value)} />
             </FormGroup>
-
-            <Button onClick={onCreate}>Terminar registro</Button>
           </Form>
         </ul>
       </Container>
+      <Container className='text-center'>
+      <div>
+        <button type="button" class="btn btn-outline-primary" onClick={onCreate}>Terminar registro</button>
+      </div>
+      </Container>  
     </div>
+
   );
 }
 
