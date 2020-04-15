@@ -4,6 +4,8 @@ import Title2 from '../Components/Title2';
 import firebase from "../firebase";
 import { Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
+const axios = require('axios');
+
 var dataFromlocalStorage = JSON.parse(localStorage.getItem("data"))
 console.info(dataFromlocalStorage);
 
@@ -13,28 +15,47 @@ function Loginp() {
   const [userMailAlt, setUserMailAlt] = React.useState()
 
   const onCreate = () => {
-    const db = firebase.firestore()
-    var user = firebase.auth().currentUser;
-    var nameT, emailT, photoUrlT, uidT, emailVerifiedT;
+    // const db = firebase.firestore()
+    // var user = firebase.auth().currentUser;
+    // var nameT, emailT, photoUrlT, uidT, emailVerifiedT;
 
 
-    if (user != null) {
-      nameT = user.displayName;
-      emailT = user.email;
-      photoUrlT = user.photoURL;
-      emailVerifiedT = user.emailVerified;
-      uidT = user.uid;
-      const db = firebase.firestore()
-      let json = {
-        uId: uidT,
-        name: nameT,
-        mail: emailT,
-        telephone: userTel,
-        photo: photoUrlT,
-        mailAlt: userMailAlt
-      };
-      db.collection('user').doc(uidT).set(json);
-    }
+    // if (user != null) {
+    //   nameT = user.displayName;
+    //   emailT = user.email;
+    //   photoUrlT = user.photoURL;
+    //   emailVerifiedT = user.emailVerified;
+    //   uidT = user.uid;
+    //   const db = firebase.firestore()
+    //   let json = {
+    //     uId: uidT,
+    //     name: nameT,
+    //     mail: emailT,
+    //     telephone: userTel,
+    //     photo: photoUrlT,
+    //     mailAlt: userMailAlt
+    //   };
+    //   db.collection('user').doc(uidT).set(json);
+    // }
+    /*axios.get('https://microservicio-autenticacion.herokuapp.com/user', {
+      params: {
+        user: 'pedro' ,
+        password: '123'
+      }
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+    .then(function () {
+      // always executed
+    }); */
+    const querystring = require('querystring');
+    axios.post('https://microservicio-autenticacion.herokuapp.com/user', querystring.stringify({ user: 'pedro', password: '123' }));
+    
+
   }
 
   return (
