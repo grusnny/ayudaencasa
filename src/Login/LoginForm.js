@@ -15,7 +15,13 @@ function Loginp() {
   const [userMailAlt, setUserMailAlt] = React.useState()
   const db = firebase.firestore()
 
+  
   const onCreate = () => {
+
+    var mensaje = document.getElementById('mensaje');
+    var loading = document.getElementById('loading');
+    
+    loading.style.display = 'block';
     var user = firebase.auth().currentUser;
     while (user == null) {
      user = firebase.auth().currentUser;    
@@ -35,23 +41,22 @@ function Loginp() {
       name: user.displayName, 
       photo: user.photoURL, 
       telephone: userTel, 
-      uId: user.uid }));
+      uId: user.uid }))
+           .then(function(res) {
+              if(res.status==200) {
+                //mensaje.innerHTML = 'El nuevo Post ha sido almacenado con id: ' + res;
+                console.log(res.status);
+                console.log(res.data);
+              }
+            }).catch(function(err) {
+                console.log(err);
+            })
+              .then(function() {
+                loading.style.display = 'none';
+                console.log("Estoy aqui");
+            });
     }
-    /*axios.get('https://microservicio-autenticacion.herokuapp.com/user', {
-      params: {
-        user: 'pedro' ,
-        password: '123'
-      }
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    })
-    .then(function () {
-      // always executed
-    }); */
+    window.location.href="/MyAccount";
   }
 
   return (
@@ -77,6 +82,7 @@ function Loginp() {
       <div>
         <button type="button" class="btn btn-outline-primary" onClick={onCreate}>Terminar registro</button>
       </div>
+      <div id="loading" style={{display: "none"}} >Cargando...</div>
       </Container>  
     </div>
 
