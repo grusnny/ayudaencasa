@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import NavBar from './NavBar/NavBar';
 import Categories from './Home/Categories'
 import Home from './Home/Home';
+import Albanil from './Home/Albanil';
+import Plomero from './Home/Plomero';
 import Loginp from './Login/Loginp';
 import MyAccount from './MyAccount/MyAccount';
 import LoginForm from "./Login/LoginForm";
@@ -38,6 +40,14 @@ class App extends Component {
               exact
               path="/logincorreo"
               render={() => <LoginForm />} />
+              <Route
+              exact
+              path="/albanil"
+              render={() => <Albanil />} />
+              <Route
+              exact
+              path="/plomero"
+              render={() => <Plomero />} />
             <Route component={PageError} />
           </Switch>
         </div>
