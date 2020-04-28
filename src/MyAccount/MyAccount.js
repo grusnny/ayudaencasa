@@ -7,6 +7,7 @@ import {
   Row, Col
 } from 'reactstrap';
 import WorkerElectricist from './WorkerElectricist';
+const axios = require('axios');
 
 
 class MyAccount extends Component {
@@ -95,20 +96,51 @@ class MyAccount extends Component {
     var workerProfessionDoc = window.localStorage.getItem("workerProfessionDoc");
 
     const onProfession = () => {
-      let json = {
-        uId: getuid,
-        name: userNameDoc,
-        mail: userMailDoc,
-        telephone: userTelephoneDoc,
-        photo: userPhotoDoc,
-        mailAlt: userMailAltDoc,
-        profession: this.state.workerProfession
-      };
-      db.collection('worker').doc(getuid).set(json);
+      var loading = document.getElementById('loading');
+      const querystring = require('querystring');
+      axios.post('https://microservicio-dominio.herokuapp.com/worker', querystring.stringify({ 
+      latitude :'1',
+      length:'-1',
+      mail: userMailDoc, 
+      mailAlt: userMailAltDoc,
+      name: userNameDoc, 
+      photo: userPhotoDoc ,
+      profession: this.state.workerProfession, 
+      telephone: userTelephoneDoc, 
+      uId: getuid }))
+           .then(function(res) {
+              if(res.status==200) {
+                //mensaje.innerHTML = 'El nuevo Post ha sido almacenado con id: ' + res;
+                console.log(res.status);
+                console.log(res.data);
+              }
+            }).catch(function(err) {
+                console.log(err);
+            })
+              .then(function() {
+                loading.style.display = 'none';
+                console.log("Estoy aqui");
+            });
+      
     }
-
     const onDelete = () => {
-      db.collection('worker').doc(getuid).delete();
+      var loading = document.getElementById('loading');
+      const querystring = require('querystring');
+        axios.post('https://microservicio-dominio.herokuapp.com/Exiworker', querystring.stringify({ 
+        uId: getuid }))
+            .then(function(res) {
+                if(res.status==200) {
+                  //mensaje.innerHTML = 'El nuevo Post ha sido almacenado con id: ' + res;
+                  console.log(res.status);
+                  console.log(res.data);
+                }
+              }).catch(function(err) {
+                  console.log(err);
+              })
+                .then(function() {
+                  loading.style.display = 'none';
+                  console.log("Estoy aqui");
+              });
     }
 
     return (
@@ -149,6 +181,7 @@ class MyAccount extends Component {
                   <CardText></CardText>
                   <CardText>  Eliminar profesión </CardText>
                   <Button color="danger" onClick={onDelete} >Eliminar profesión</Button>
+                  <div id="loading" style={{display: "none"}} >Cargando...</div>
                 </CardBody>
               </Card>
             </Col>
