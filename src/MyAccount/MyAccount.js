@@ -7,6 +7,8 @@ import {
   Row, Col
 } from 'reactstrap';
 import WorkerElectricist from './WorkerElectricist';
+import Mapp from '../MyAccount/map'
+import MapExample from '../MyAccount/map2'
 const axios = require('axios');
 
 
@@ -148,7 +150,7 @@ class MyAccount extends Component {
         <Container className='text-center'>
           <Row xs="2">
             <Col>
-              <Card style={{ width: '18rem' }}>
+              <Card style={{ width: '100%' }}>
                 <CardImg top width="100%" src={userPhotoDoc} />
                 <CardBody className='text-left'>
                   <CardTitle>Nombre: {userNameDoc} </CardTitle>
@@ -166,8 +168,9 @@ class MyAccount extends Component {
                 </CardBody>
               </Card>
             </Col>
+            
             <Col>
-              <Card style={{ width: '18rem' }}>
+              <Card style={{ width: '100%' }}>
                 <CardImg top width="100%" src={workerPhotoDoc} />
                 <CardBody className='text-left'>
                   <CardTitle>Nombre: {workerNameDoc} </CardTitle>
@@ -186,8 +189,16 @@ class MyAccount extends Component {
               </Card>
             </Col>
           </Row>
-       
         </Container>
+        <Row xs="1">
+              <Col>
+                  <Card style={{ width: '100%' }}>
+                      <CardBody className='text-left'>
+                        <MapExample/>
+                      </CardBody>
+                  </Card>
+              </Col>
+            </Row>
         <WorkerElectricist/>
       </div>
     );
