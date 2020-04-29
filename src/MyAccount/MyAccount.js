@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import firebase from 'firebase'
 import {
@@ -8,12 +8,13 @@ import {
 } from 'reactstrap';
 import WorkerElectricist from './WorkerElectricist';
 import "../MyAccount/MyAccount.css";
-import MapExample from '../MyAccount/map2'
+import MapExample from '../MyAccount/map2';
+import Error from '../Components/error';
 const axios = require('axios');
 
 
 class MyAccount extends Component {
-
+  state = {error: false }
   constructor() {
     super();
     this.state = {
@@ -27,16 +28,15 @@ class MyAccount extends Component {
       [event.target.name]: event.target.value
     });
   }
-
+  
   render() {
-
+    const { error } = this.state
     console.log('historia', this.props.history);
     console.log('locación', this.props.location);
     console.log('match', this.props.match);
 
     const db = firebase.firestore();
     const [workerProfession, setWorkerProfession] = [];
-
 
     firebase.auth().onAuthStateChanged(function (user) {
       var currentUser = user.uid;
@@ -60,6 +60,8 @@ class MyAccount extends Component {
         window.localStorage.setItem("workerPhotoDoc", doc.data().photo);
         window.localStorage.setItem("workerTelephoneDoc", doc.data().telephone);
         window.localStorage.setItem("workerProfessionDoc", doc.data().profession);
+        window.localStorage.setItem("workerLatDoc", doc.data().latitude);
+        window.localStorage.setItem("workerLonDoc", doc.data().length);
 
       })
       .catch(err => {
@@ -78,6 +80,8 @@ class MyAccount extends Component {
         window.localStorage.setItem("userMailAltDoc", doc.data().mailAlt);
         window.localStorage.setItem("userPhotoDoc", doc.data().photo);
         window.localStorage.setItem("userTelephoneDoc", doc.data().telephone);
+        window.localStorage.setItem("userLatDoc", 0);
+        window.localStorage.setItem("userLngDoc", 0);
 
       })
       .catch(err => {
@@ -89,6 +93,8 @@ class MyAccount extends Component {
     var userMailAltDoc = window.localStorage.getItem("userMailAltDoc");
     var userPhotoDoc = window.localStorage.getItem("userPhotoDoc");
     var userTelephoneDoc = window.localStorage.getItem("userTelephoneDoc");
+    var userlatitud = window.localStorage.getItem("userLatDoc");
+    var userlongitud = window.localStorage.getItem("userLngDoc");
 
     var workerNameDoc = window.localStorage.getItem("workerNameDoc");
     var workerMailDoc = window.localStorage.getItem("workerMailDoc");
@@ -98,32 +104,42 @@ class MyAccount extends Component {
     var workerProfessionDoc = window.localStorage.getItem("workerProfessionDoc");
 
     const onProfession = () => {
-      var loading = document.getElementById('loading');
-      const querystring = require('querystring');
-      axios.post('https://microservicio-dominio.herokuapp.com/worker', querystring.stringify({ 
-      latitude :'1',
-      length:'-1',
-      mail: userMailDoc, 
-      mailAlt: userMailAltDoc,
-      name: userNameDoc, 
-      photo: userPhotoDoc ,
-      profession: this.state.workerProfession, 
-      telephone: userTelephoneDoc, 
-      uId: getuid }))
-           .then(function(res) {
-              if(res.status==200) {
-                //mensaje.innerHTML = 'El nuevo Post ha sido almacenado con id: ' + res;
-                console.log(res.status);
-                console.log(res.data);
-              }
-            }).catch(function(err) {
-                console.log(err);
-            })
-              .then(function() {
-                loading.style.display = 'none';
-                console.log("Estoy aqui");
-            });
-      
+        userlatitud = window.localStorage.getItem("userLatDoc");
+        userlongitud = window.localStorage.getItem("userLngDoc");
+        console.log(userlatitud);
+        console.log(userlongitud);
+      if(userlatitud!= "0" && userlongitud!="0"){
+        var loading = document.getElementById('loading');
+        const querystring = require('querystring');
+        axios.post('https://microservicio-dominio.herokuapp.com/worker', querystring.stringify({ 
+        latitude :userlatitud,
+        length:userlongitud,
+        mail: userMailDoc, 
+        mailAlt: userMailAltDoc,
+        name: userNameDoc, 
+        photo: userPhotoDoc ,
+        profession: this.state.workerProfession, 
+        telephone: userTelephoneDoc, 
+        uId: getuid }))
+            .then(function(res) {
+                if(res.status==200) {
+                  //mensaje.innerHTML = 'El nuevo Post ha sido almacenado con id: ' + res;
+                  console.log(res.status);
+                  console.log(res.data);
+                }
+              }).catch(function(err) {
+                  console.log(err);
+              })
+                .then(function() {
+                  loading.style.display = 'none';
+                  console.log("Estoy aqui");
+              });
+              this.setState({ error: false });
+      }
+      else{
+        this.setState({ error: true});
+        return;
+      }
     }
     const onDelete = () => {
       var loading = document.getElementById('loading');
@@ -144,7 +160,16 @@ class MyAccount extends Component {
                   console.log("Estoy aqui");
               });
     }
-
+ // Cargar un componente condicionalmente
+    
+    let componente;
+    if(this.state.error){
+        // Hay un error, mostrar componente
+        componente=<Error mensaje='Debe seleccionar una posición en el mapa primero'/>
+    }else{
+      // Mostrar 
+      componente=null;
+    }
     return (
       <div className="page">
         <Container className='text-center'>
@@ -166,8 +191,7 @@ class MyAccount extends Component {
           </div>
           <div class="row">
             <div class="col-xs-6 col-md-4">
-            <Card>
-            <Card style={{ width: '20rem' ,height:'14rem'}}>
+            <Card style={{ width: '20rem' ,height:'13rem'}}>
                     <CardBody className='text-left'>
                     <CardText></CardText>
                       <CardText></CardText>
@@ -184,7 +208,7 @@ class MyAccount extends Component {
                       <CardText></CardText>
                     </CardBody>
               </Card>
-                  <Card style={{ width: '20rem',height:'13rem' }}>
+                  <Card style={{ width: '20rem',height:'16rem' }}>
                           <CardBody className='text-left'>
                           <CardTitle><h6>Registrar profesión</h6></CardTitle>
                           <CardText></CardText>
@@ -193,9 +217,12 @@ class MyAccount extends Component {
                         <Input name="workerProfession" onChange={this.commonChange} />
                             </CardText>
                             <button type="button" class="btn btn-outline-primary" onClick={onProfession} >Registrar profesión</button>
+                            <CardBody className='text-center'>
+                                {componente}
+                                </CardBody>
                           </CardBody>
                 </Card>
-                <Card style={{ width: '20rem' ,height:'12rem'}}>
+                <Card style={{ width: '20rem' ,height:'10rem'}}>
                     <CardBody className='text-left'>
                         <CardTitle><h6>Mi profesión actual</h6></CardTitle>
                         <CardText></CardText>
@@ -205,7 +232,6 @@ class MyAccount extends Component {
                         <button type="button" class="btn btn-outline-primary" onClick={onDelete} >Eliminar profesión</button>
                         <div id="loading" style={{display: "none"}} >Cargando...</div>
                     </CardBody>
-                </Card>
                 </Card>
               </div>
               <div class="col-xs-6 col-md-8">

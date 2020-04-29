@@ -24,6 +24,9 @@ handleClick(e){
 this.setState({ currentPos: e.latlng });
 const { lat, lng } = e.latlng;
 console.log(lat, lng);
+
+window.localStorage.setItem("userLatDoc", lat);
+window.localStorage.setItem("userLngDoc", lng);
 }
     render() {
         return (
