@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import "../Home/Home.css";
 import { Container } from 'reactstrap';
 import firebase from "../firebase";
-import { WorkerMap } from './WorkerMap'
+import { AlbanilMap } from './AlbanilMap'
 
 function Albanil() {
 
@@ -24,7 +24,7 @@ function Albanil() {
               <ul>
                   {worker.map(worker => (                    
                       <li key={worker.mail}>
-                          <WorkerMap worker={worker} />                          
+                          <AlbanilMap worker={worker} />                          
                       </li>
                   ))}
               </ul>
