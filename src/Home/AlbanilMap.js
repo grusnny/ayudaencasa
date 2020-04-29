@@ -7,8 +7,6 @@ import firebase from 'firebase'
 
 export const AlbanilMap = ({ worker }) => {
 
-    const a = 0
-
     const [name, setName] = React.useState(worker.name)
     const [latitude, setLatitude] = React.useState(worker.latitude)
     const [length, setLength] = React.useState(worker.length)
