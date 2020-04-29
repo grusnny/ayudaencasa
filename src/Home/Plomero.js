@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import "../Home/Home.css";
 import { Container } from 'reactstrap';
 import firebase from "../firebase";
-import { WorkerMap } from './WorkerMap'
+import { PlomeroMap } from './PlomeroMap'
 
 function Plomero() {
 
@@ -24,7 +24,7 @@ function Plomero() {
               <ul>
                   {worker.map(worker => (                    
                       <li key={worker.mail}>
-                          <WorkerMap worker={worker} />                          
+                          <PlomeroMap worker={worker} />                          
                       </li>
                   ))}
               </ul>

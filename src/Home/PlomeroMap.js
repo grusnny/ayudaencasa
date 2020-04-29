@@ -5,7 +5,7 @@ import { Icon } from "leaflet";
 import "../Home/Home.css";
 import firebase from 'firebase'
 
-export const WorkerMap = ({ worker }) => {
+export const PlomeroMap = ({ worker }) => {
 
     const [name, setName] = React.useState(worker.name)
     const [latitude, setLatitude] = React.useState(worker.latitude)
