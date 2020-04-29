@@ -7,6 +7,9 @@ import {
   Row, Col
 } from 'reactstrap';
 import WorkerElectricist from './WorkerElectricist';
+import "../MyAccount/MyAccount.css";
+import MapExample from '../MyAccount/map2'
+const axios = require('axios');
 
 
 class MyAccount extends Component {
@@ -95,68 +98,127 @@ class MyAccount extends Component {
     var workerProfessionDoc = window.localStorage.getItem("workerProfessionDoc");
 
     const onProfession = () => {
-      let json = {
-        uId: getuid,
-        name: userNameDoc,
-        mail: userMailDoc,
-        telephone: userTelephoneDoc,
-        photo: userPhotoDoc,
-        mailAlt: userMailAltDoc,
-        profession: this.state.workerProfession
-      };
-      db.collection('worker').doc(getuid).set(json);
+      var loading = document.getElementById('loading');
+      const querystring = require('querystring');
+      axios.post('https://microservicio-dominio.herokuapp.com/worker', querystring.stringify({ 
+      latitude :'1',
+      length:'-1',
+      mail: userMailDoc, 
+      mailAlt: userMailAltDoc,
+      name: userNameDoc, 
+      photo: userPhotoDoc ,
+      profession: this.state.workerProfession, 
+      telephone: userTelephoneDoc, 
+      uId: getuid }))
+           .then(function(res) {
+              if(res.status==200) {
+                //mensaje.innerHTML = 'El nuevo Post ha sido almacenado con id: ' + res;
+                console.log(res.status);
+                console.log(res.data);
+              }
+            }).catch(function(err) {
+                console.log(err);
+            })
+              .then(function() {
+                loading.style.display = 'none';
+                console.log("Estoy aqui");
+            });
+      
     }
-
     const onDelete = () => {
-      db.collection('worker').doc(getuid).delete();
+      var loading = document.getElementById('loading');
+      const querystring = require('querystring');
+        axios.post('https://microservicio-dominio.herokuapp.com/Exiworker', querystring.stringify({ 
+        uId: getuid }))
+            .then(function(res) {
+                if(res.status==200) {
+                  //mensaje.innerHTML = 'El nuevo Post ha sido almacenado con id: ' + res;
+                  console.log(res.status);
+                  console.log(res.data);
+                }
+              }).catch(function(err) {
+                  console.log(err);
+              })
+                .then(function() {
+                  loading.style.display = 'none';
+                  console.log("Estoy aqui");
+              });
     }
 
     return (
       <div className="page">
         <Container className='text-center'>
-          <Row xs="2">
-            <Col>
-              <Card style={{ width: '18rem' }}>
-                <CardImg top width="100%" src={userPhotoDoc} />
-                <CardBody className='text-left'>
-                  <CardTitle>Nombre: {userNameDoc} </CardTitle>
-                  <CardSubtitle>Correo: {userMailDoc} </CardSubtitle>
-                  <CardSubtitle>Correo alternativo: {userMailAltDoc} </CardSubtitle>
-                  <CardSubtitle>Telefono: {userTelephoneDoc} </CardSubtitle>
-                  <CardText></CardText>
-                  <CardText></CardText>
-                  <CardText></CardText>
-                  <CardText></CardText>
-                  <CardText>  Ingrese una profesión
-              <Input name="workerProfession" onChange={this.commonChange} />
-                  </CardText>
-                  <Button color="danger" onClick={onProfession} >Registrar profesión</Button>
-                </CardBody>
+        <Card>
+          <CardBody>
+          <div class="row">
+            <div class="col-xs-6 col-md-4">
+              <Card style={{ width: '20rem' }}>
+                    <CardImg top width="100%" src={userPhotoDoc} />
               </Card>
-            </Col>
-            <Col>
-              <Card style={{ width: '18rem' }}>
-                <CardImg top width="100%" src={workerPhotoDoc} />
-                <CardBody className='text-left'>
-                  <CardTitle>Nombre: {workerNameDoc} </CardTitle>
-                  <CardSubtitle>Correo: {workerMailDoc} </CardSubtitle>
-                  <CardSubtitle>Correo alternativo: {workerMailAltDoc} </CardSubtitle>
-                  <CardSubtitle>Telefono: {workerTelephoneDoc} </CardSubtitle>
-                  <CardSubtitle>Profesión: {workerProfessionDoc} </CardSubtitle>
-                  <CardText></CardText>
-                  <CardText></CardText>
-                  <CardText></CardText>
-                  <CardText></CardText>
-                  <CardText>  Eliminar profesión </CardText>
-                  <Button color="danger" onClick={onDelete} >Eliminar profesión</Button>
-                </CardBody>
+          </div>
+          <div class="col-xs-6 col-md-8">
+                <div class="contenedor center-h center-v others"> 
+                  <h1>
+                  <CardTitle> {userNameDoc} </CardTitle>
+                  </h1>
+                </div>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6 col-md-4">
+            <Card>
+            <Card style={{ width: '20rem' ,height:'14rem'}}>
+                    <CardBody className='text-left'>
+                    <CardText></CardText>
+                      <CardText></CardText>
+                      <CardTitle><h6>Información de contacto</h6></CardTitle>
+                      <CardText></CardText>
+                      <CardText></CardText>
+                      <CardSubtitle>Correo: {userMailDoc} </CardSubtitle>
+                      <CardText></CardText>
+                      <CardText></CardText>
+                      <CardSubtitle>Correo alternativo: {userMailAltDoc} </CardSubtitle>
+                      <CardText></CardText>
+                      <CardText></CardText>
+                      <CardSubtitle>Telefono: {userTelephoneDoc} </CardSubtitle>
+                      <CardText></CardText>
+                    </CardBody>
               </Card>
-            </Col>
-          </Row>
-       
-        </Container>
-        <WorkerElectricist/>
+                  <Card style={{ width: '20rem',height:'13rem' }}>
+                          <CardBody className='text-left'>
+                          <CardTitle><h6>Registrar profesión</h6></CardTitle>
+                          <CardText></CardText>
+                          <CardText></CardText>
+                            <CardText>  Ingrese una profesión
+                        <Input name="workerProfession" onChange={this.commonChange} />
+                            </CardText>
+                            <button type="button" class="btn btn-outline-primary" onClick={onProfession} >Registrar profesión</button>
+                          </CardBody>
+                </Card>
+                <Card style={{ width: '20rem' ,height:'12rem'}}>
+                    <CardBody className='text-left'>
+                        <CardTitle><h6>Mi profesión actual</h6></CardTitle>
+                        <CardText></CardText>
+                        <CardText></CardText>
+                        <CardSubtitle>Profesión: {workerProfessionDoc} </CardSubtitle>
+                        <CardText>  Eliminar profesión </CardText>
+                        <button type="button" class="btn btn-outline-primary" onClick={onDelete} >Eliminar profesión</button>
+                        <div id="loading" style={{display: "none"}} >Cargando...</div>
+                    </CardBody>
+                </Card>
+                </Card>
+              </div>
+              <div class="col-xs-6 col-md-8">
+
+                  <MapExample/>
+              </div>
+            </div>
+            </CardBody>
+          </Card>
+          </Container>
+        {/* <WorkerElectricist/> */}
       </div>
+      
     );
   }
 }

@@ -4,14 +4,14 @@ import { Container } from 'reactstrap';
 import firebase from "../firebase";
 import { WorkerMap } from './WorkerMap'
 
-function Home() {
+function Albanil() {
 
   const [worker, setWorker] = React.useState([])
 
   React.useEffect(() => {
       const fetchData = async () => {
           const db = firebase.firestore()
-          const data = await db.collection('worker').where("profession","==","Electricista").get()
+          const data = await db.collection('worker').where("profession","==","Albañil").get()
           setWorker(data.docs.map(doc => ({ ...doc.data(), id: doc.id }) ) )
           
       }
@@ -34,4 +34,4 @@ function Home() {
 
 }
 
-export default Home; 
+export default Albanil; 
