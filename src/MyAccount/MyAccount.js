@@ -6,7 +6,6 @@ import {
   CardTitle, CardSubtitle, Button, Container,
   Row, Col
 } from 'reactstrap';
-import WorkerElectricist from './WorkerElectricist';
 import "../MyAccount/MyAccount.css";
 import MapExample from '../MyAccount/map2';
 import Error from '../Components/error';
@@ -211,8 +210,6 @@ class MyAccount extends Component {
                   <Card style={{ width: '20rem',height:'16rem' }}>
                           <CardBody className='text-left'>
                           <CardTitle><h6>Registrar profesión</h6></CardTitle>
-                          <CardText></CardText>
-                          <CardText></CardText>
                             <CardText>  Ingrese una profesión
                         <Input name="workerProfession" onChange={this.commonChange} />
                             </CardText>
