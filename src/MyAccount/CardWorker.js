@@ -10,7 +10,7 @@ export const CardWorker = ({ worker }) => {
     const [name, setName] = React.useState(worker.name)
     const [mail, setMail] = React.useState(worker.mail)
     const [telephone, setTelephone] = React.useState(worker.telephone)
-    const [experience, setExperience] = React.useState(worker.profession)
+    const [profession, setProfession] = React.useState(worker.profession)
 
     return (
         <>
@@ -21,7 +21,7 @@ export const CardWorker = ({ worker }) => {
                         <CardTitle>Nombre: {name}</CardTitle>
                         <CardSubtitle>Correo: {mail}</CardSubtitle>
                         <CardSubtitle>Telefono: {telephone}</CardSubtitle>
-                        <CardText>Experiencia: {experience}</CardText>
+                        <CardText>Profesión: {profession}</CardText>
                     </CardBody>
                 </Card>
             </div>
