@@ -7,6 +7,7 @@ import Albanil from './Home/Albanil';
 import Plomero from './Home/Plomero';
 import Loginp from './Login/Loginp';
 import MyAccount from './MyAccount/MyAccount';
+import AccountController from './MyAccount/AccountController';
 import LoginForm from "./Login/LoginForm";
 import PageError from './PageError/PageError';
 import './App.css';
@@ -48,6 +49,10 @@ class App extends Component {
               exact
               path="/plomero"
               render={() => <Plomero />} />
+              <Route
+              exact
+              path="/accountController"
+              render={() => <AccountController />} />
             <Route component={PageError} />
           </Switch>
         </div>

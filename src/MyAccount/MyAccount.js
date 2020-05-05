@@ -159,6 +159,22 @@ class MyAccount extends Component {
                   console.log("Estoy aqui");
               });
     }
+
+    const onLogOut = () => {
+      firebase.auth().signOut().then(function() {
+        console.log("Log Out correcto");
+        window.localStorage.setItem("UID", "null");
+        getuid = "";
+        console.log(getuid)
+        console.log(firebase.auth().currentUser)
+        window.localStorage.clear()
+        window.location.href="/categorias";
+      }).catch(function(error) {
+        // An error happened.
+      });
+    }
+
+
  // Cargar un componente condicionalmente
     
     let componente;
@@ -205,6 +221,7 @@ class MyAccount extends Component {
                       <CardText></CardText>
                       <CardSubtitle>Telefono: {userTelephoneDoc} </CardSubtitle>
                       <CardText></CardText>
+                      <button type="button" class="btn btn-outline-primary" onClick={onLogOut} >Salir de la cuenta</button>
                     </CardBody>
               </Card>
                   <Card style={{ width: '20rem',height:'16rem' }}>
