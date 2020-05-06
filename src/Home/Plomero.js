@@ -13,6 +13,9 @@ import {
 var name;
 var profession;
 var mail;
+var wid;
+var foto;
+var tel;
 const axios = require('axios');
 const db = firebase.firestore();
 var greenIcon = L.icon({
@@ -33,10 +36,13 @@ const onE = (e) => {
             //console.log(result);
             const querystring = require('querystring');
             axios.post('https://microservicio-dominio.herokuapp.com/Solicitud', querystring.stringify({  
-            uId: user.uid,
-            name:name,
-            profession:profession,
-            mail:mail
+            uid: user.uid,
+            wname:name,
+            wprofession:profession,
+            wmail:mail,
+            wphoto:foto,
+            wid:wid,
+            wtel:tel
          }))
                 .then(function(res) {
                     if(res.status==200) {
@@ -99,11 +105,13 @@ const onE = (e) => {
                         >
                             <div>
                             <Card style={{ width: '12rem' }}>
-                    <CardImg top width="5%" src={activeWorker.photo} />
+                    <CardImg top width="5%" src={foto=activeWorker.photo} />
                     <CardBody>
                         <CardTitle>Nombre: {name=activeWorker.name}</CardTitle>
                         <CardText>Correo: {mail=activeWorker.mail}</CardText>                      
                         <CardText>Profesión: {profession=activeWorker.profession}</CardText>
+                        <CardText>Telefono: {tel=activeWorker.telephone}</CardText>
+                        <CardText>{wid=activeWorker.uId}</CardText>
                         <button type="button" className="btn btn-outline-primary" onClick={onE} >Contactar</button>
                     </CardBody>
                 </Card>

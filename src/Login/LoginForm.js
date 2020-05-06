@@ -9,7 +9,7 @@ const axios = require('axios');
 var dataFromlocalStorage = JSON.parse(localStorage.getItem("data"))
 console.info(dataFromlocalStorage);
 
-function Loginp() {
+function LoginForm() {
 
   const [userTel, setUserTel] = React.useState()
   const [userMailAlt, setUserMailAlt] = React.useState()
@@ -89,4 +89,4 @@ function Loginp() {
   );
 }
 
-export default Loginp;
+export default LoginForm;

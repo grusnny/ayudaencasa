@@ -30,22 +30,29 @@ export default class Login extends Component{
                         console.log(res.status);
                         valor=res.data;
                         console.log(result.user.uid);
+                        console.log("valor");
                         console.log(valor);
+                        if(valor==1){
+                            window.location.href="/home";
+                            console.log("el valor es: 1");
+                        }else{
+                            window.location.href="/logincorreo";
+                            console.log("el valor es: 0");
+                        }
+                        
                     }
                     }).catch(function(err) {
                         console.log(err);
+                        window.location.href="/home";
                     })
                     .then(function() {
                         //loading.style.display = 'none';
                         console.log("Estoy aqui");
+
                     });
-            
-            if(valor="1"){
-                window.location.href="/MyAccount";
-            }else{
-                window.location.href="/logincorreo"; 
-            }
+
         })
+        
         
     }
 
