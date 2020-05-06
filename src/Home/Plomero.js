@@ -12,6 +12,8 @@ import {
 } from 'reactstrap';
 var name;
 var profession;
+var mail;
+const axios = require('axios');
 const db = firebase.firestore();
 var greenIcon = L.icon({
     iconUrl: icon,
@@ -27,13 +29,29 @@ const onE = (e) => {
     e.preventDefault();
     console.log(name);
     console.log(profession);
-    // db.collection("pedidos").doc("Pedidos").set({
-    //     nameW:name,
-    //     idW:id,
-    //     nameU:firebase.auth().currentUser.displayName,
-    //     idU: firebase.auth().currentUser.uid
-    // });
-   // window.location.href="/pedidos";
+        var user = firebase.auth().currentUser;
+            //console.log(result);
+            const querystring = require('querystring');
+            axios.post('https://microservicio-dominio.herokuapp.com/Solicitud', querystring.stringify({  
+            uId: user.uid,
+            name:name,
+            profession:profession,
+            mail:mail
+         }))
+                .then(function(res) {
+                    if(res.status==200) {
+                        //mensaje.innerHTML = 'El nuevo Post ha sido almacenado con id: ' + res;
+                        console.log(res.status);
+                    }
+                    }).catch(function(err) {
+                        console.log(err);
+                    })
+                    .then(function() {
+                        //loading.style.display = 'none';
+                        console.log("Estoy aqui");
+                    });
+
+    //window.location.href="/pedidos";
 
 }
     function Plomero() {
@@ -83,7 +101,8 @@ const onE = (e) => {
                             <Card style={{ width: '12rem' }}>
                     <CardImg top width="5%" src={activeWorker.photo} />
                     <CardBody>
-                        <CardTitle>Nombre: {name=activeWorker.name}</CardTitle>                        
+                        <CardTitle>Nombre: {name=activeWorker.name}</CardTitle>
+                        <CardText>Correo: {mail=activeWorker.mail}</CardText>                      
                         <CardText>Profesión: {profession=activeWorker.profession}</CardText>
                         <button type="button" className="btn btn-outline-primary" onClick={onE} >Contactar</button>
                     </CardBody>
