@@ -10,7 +10,8 @@ import {
     Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle, Button
 } from 'reactstrap';
-
+var name;
+var profession;
 const db = firebase.firestore();
 var greenIcon = L.icon({
     iconUrl: icon,
@@ -22,14 +23,16 @@ var greenIcon = L.icon({
     shadowAnchor: [4, 62],  // the same for the shadow
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
-const onE = (name,id) => {
-
-    db.collection("pedidos").doc("Pedidos").set({
-        nameW:name,
-        idW:id,
-        nameU:firebase.auth().currentUser.displayName,
-        idU: firebase.auth().currentUser.uid
-    });
+const onE = (e) => {
+    e.preventDefault();
+    console.log(name);
+    console.log(profession);
+    // db.collection("pedidos").doc("Pedidos").set({
+    //     nameW:name,
+    //     idW:id,
+    //     nameU:firebase.auth().currentUser.displayName,
+    //     idU: firebase.auth().currentUser.uid
+    // });
    // window.location.href="/pedidos";
 
 }
@@ -80,9 +83,9 @@ const onE = (name,id) => {
                             <Card style={{ width: '12rem' }}>
                     <CardImg top width="5%" src={activeWorker.photo} />
                     <CardBody>
-                        <CardTitle>Nombre: {activeWorker.name}</CardTitle>                        
-                        <CardText>Profesión: {activeWorker.profession}</CardText>
-                        <button type="button" className="btn btn-outline-primary" onClick={onE(activeWorker.name,activeWorker.uid)} >Contactar</button>
+                        <CardTitle>Nombre: {name=activeWorker.name}</CardTitle>                        
+                        <CardText>Profesión: {profession=activeWorker.profession}</CardText>
+                        <button type="button" className="btn btn-outline-primary" onClick={onE} >Contactar</button>
                     </CardBody>
                 </Card>
                             </div>
