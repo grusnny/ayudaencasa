@@ -19,7 +19,7 @@ class NavBar extends Component {
               <a class="nav-link" href="/MyAccount">Mi Cuenta</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Menu3</a>
+              <a class="nav-link" href="#">Trabajos</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/loginp">Registrarse</a>

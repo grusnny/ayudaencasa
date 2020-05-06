@@ -11,6 +11,7 @@ import AccountController from './MyAccount/AccountController';
 import LoginForm from "./Login/LoginForm";
 import PageError from './PageError/PageError';
 import './App.css';
+import pedidos from './List/pedidos';
 
 class App extends Component {
   render() {
@@ -49,6 +50,10 @@ class App extends Component {
               exact
               path="/plomero"
               render={() => <Plomero />} />
+              <Route
+                  exact
+                  path="/pedidos"
+                  render={() => <pedidos />} />
               <Route
               exact
               path="/accountController"

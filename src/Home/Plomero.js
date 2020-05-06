@@ -11,6 +11,7 @@ import {
     CardTitle, CardSubtitle, Button
 } from 'reactstrap';
 
+const db = firebase.firestore();
 var greenIcon = L.icon({
     iconUrl: icon,
     //shadowUrl: shadow,
@@ -21,8 +22,18 @@ var greenIcon = L.icon({
     shadowAnchor: [4, 62],  // the same for the shadow
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
+const onE = (name,id) => {
 
-function Plomero() {
+    db.collection("pedidos").doc("Pedidos").set({
+        nameW:name,
+        idW:id,
+        nameU:firebase.auth().currentUser.displayName,
+        idU: firebase.auth().currentUser.uid
+    });
+   // window.location.href="/pedidos";
+
+}
+    function Plomero() {
 
     const [worker, setWorker] = React.useState([])
     const [activeWorker, setActiveWorker] = React.useState(null);
@@ -50,7 +61,7 @@ function Plomero() {
                             key={element.id}
                             icon={greenIcon}
                             position={[element.latitude, element.length]}
-                            onClick={() => {
+                            onDblclick={() => {
                                 setActiveWorker(element);
                             }}
                         />
@@ -71,7 +82,7 @@ function Plomero() {
                     <CardBody>
                         <CardTitle>Nombre: {activeWorker.name}</CardTitle>                        
                         <CardText>Profesión: {activeWorker.profession}</CardText>
-                        <Button color="primary">Contactar</Button>{' '}
+                        <button type="button" className="btn btn-outline-primary" onClick={onE(activeWorker.name,activeWorker.uid)} >Contactar</button>
                     </CardBody>
                 </Card>
                             </div>
