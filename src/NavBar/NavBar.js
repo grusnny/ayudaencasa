@@ -35,7 +35,7 @@ class NavBar extends Component {
               <a class="nav-link" href="/categorias">Home<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/MyAccount">Mi Cuenta</a>
+              <a class="nav-link" href="/accountController">Mi Cuenta</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/pedidos">Trabajos</a>

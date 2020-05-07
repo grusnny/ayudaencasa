@@ -37,16 +37,24 @@ class MyAccount extends Component {
     const db = firebase.firestore();
     const [workerProfession, setWorkerProfession] = [];
 
-    firebase.auth().onAuthStateChanged(function (user) {
-      var currentUser = user.uid;
-      window.localStorage.setItem("UID", currentUser);
-    });
-
-
+    // firebase.auth().onAuthStateChanged(function (user) {
+    //   var currentUser = user.uid;
+    //   window.localStorage.setItem("UID", currentUser);
+    // });
+    var user 
+    while(user==null){
+      user = firebase.auth().onAuthStateChanged;
+    }
+  
+    var currentUser = user.uid;
+    window.localStorage.setItem("UID", currentUser);
 
     var getuid = window.localStorage.getItem("UID")
 
-    let workerRef = db.collection('worker').doc(getuid);
+    let workerRef
+    while(workerRef==null){
+      workerRef = db.collection('worker').doc(getuid);
+    }
     let query = workerRef.get()
       .then(doc => {
         if (!doc.exists) {

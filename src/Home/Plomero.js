@@ -47,6 +47,7 @@ const onE = (e) => {
                 .then(function(res) {
                     if(res.status==200) {
                         //mensaje.innerHTML = 'El nuevo Post ha sido almacenado con id: ' + res;
+                        window.location.href="/pedidos";
                         console.log(res.status);
                     }
                     }).catch(function(err) {
@@ -57,7 +58,7 @@ const onE = (e) => {
                         console.log("Estoy aqui");
                     });
 
-    //window.location.href="/pedidos";
+
 
 }
     function Plomero() {

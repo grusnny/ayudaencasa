@@ -56,7 +56,7 @@ function LoginForm() {
                 console.log("Estoy aqui");
             });
     }
-    window.location.href="/MyAccount";
+    window.location.href="/categorias";
   }
 
   return (

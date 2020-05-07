@@ -7,7 +7,6 @@ const db = firebase.firestore();
 
 function Pedidos() {
 
-  var user = firebase.auth().currentUser; 
 
   var usuario=JSON.parse(localStorage.getItem("data"));
 
@@ -17,7 +16,6 @@ function Pedidos() {
 
   React.useEffect(() => {
     
-    console.log(user);
 
     const fetchData = async () => {
       const data = await db.collection('pedido').where("uid","==",usuario.user.uid).get()
