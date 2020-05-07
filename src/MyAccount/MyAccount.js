@@ -13,7 +13,7 @@ const axios = require('axios');
 
 
 class MyAccount extends Component {
-  state = {error: false }
+  state = { error: false }
   constructor() {
     super();
     this.state = {
@@ -27,7 +27,7 @@ class MyAccount extends Component {
       [event.target.name]: event.target.value
     });
   }
-  
+
   render() {
     const { error } = this.state
     console.log('historia', this.props.history);
@@ -103,112 +103,99 @@ class MyAccount extends Component {
     var workerProfessionDoc = window.localStorage.getItem("workerProfessionDoc");
 
     const onProfession = () => {
-        userlatitud = window.localStorage.getItem("userLatDoc");
-        userlongitud = window.localStorage.getItem("userLngDoc");
-        console.log(userlatitud);
-        console.log(userlongitud);
-      if(userlatitud!= "0" && userlongitud!="0"){
+      userlatitud = window.localStorage.getItem("userLatDoc");
+      userlongitud = window.localStorage.getItem("userLngDoc");
+      console.log(userlatitud);
+      console.log(userlongitud);
+      if (userlatitud != "0" && userlongitud != "0") {
         var loading = document.getElementById('loading');
         const querystring = require('querystring');
-        axios.post('https://microservicio-dominio.herokuapp.com/worker', querystring.stringify({ 
-        latitude :userlatitud,
-        length:userlongitud,
-        mail: userMailDoc, 
-        mailAlt: userMailAltDoc,
-        name: userNameDoc, 
-        photo: userPhotoDoc ,
-        profession: this.state.workerProfession, 
-        telephone: userTelephoneDoc, 
-        uId: getuid }))
-            .then(function(res) {
-                if(res.status==200) {
-                  //mensaje.innerHTML = 'El nuevo Post ha sido almacenado con id: ' + res;
-                  console.log(res.status);
-                  console.log(res.data);
-                }
-              }).catch(function(err) {
-                  console.log(err);
-              })
-                .then(function() {
-                  loading.style.display = 'none';
-                  console.log("Estoy aqui");
-              });
-              this.setState({ error: false });
+        axios.post('https://microservicio-dominio.herokuapp.com/worker', querystring.stringify({
+          latitude: userlatitud,
+          length: userlongitud,
+          mail: userMailDoc,
+          mailAlt: userMailAltDoc,
+          name: userNameDoc,
+          photo: userPhotoDoc,
+          profession: this.state.workerProfession,
+          telephone: userTelephoneDoc,
+          uId: getuid
+        }))
+          .then(function (res) {
+            if (res.status == 200) {
+              //mensaje.innerHTML = 'El nuevo Post ha sido almacenado con id: ' + res;
+              console.log(res.status);
+              console.log(res.data);
+            }
+          }).catch(function (err) {
+            console.log(err);
+          })
+          .then(function () {
+            loading.style.display = 'none';
+            console.log("Estoy aqui");
+          });
+        this.setState({ error: false });
       }
-      else{
-        this.setState({ error: true});
+      else {
+        this.setState({ error: true });
         return;
       }
     }
     const onDelete = () => {
       var loading = document.getElementById('loading');
       const querystring = require('querystring');
-        axios.post('https://microservicio-dominio.herokuapp.com/Exiworker', querystring.stringify({ 
-        uId: getuid }))
-            .then(function(res) {
-                if(res.status==200) {
-                  //mensaje.innerHTML = 'El nuevo Post ha sido almacenado con id: ' + res;
-                  console.log(res.status);
-                  console.log(res.data);
-                }
-              }).catch(function(err) {
-                  console.log(err);
-              })
-                .then(function() {
-                  loading.style.display = 'none';
-                  console.log("Estoy aqui");
-              });
+      axios.post('https://microservicio-dominio.herokuapp.com/Exiworker', querystring.stringify({
+        uId: getuid
+      }))
+        .then(function (res) {
+          if (res.status == 200) {
+            //mensaje.innerHTML = 'El nuevo Post ha sido almacenado con id: ' + res;
+            console.log(res.status);
+            console.log(res.data);
+          }
+        }).catch(function (err) {
+          console.log(err);
+        })
+        .then(function () {
+          loading.style.display = 'none';
+          console.log("Estoy aqui");
+        });
     }
 
-    const onLogOut = () => {
-      firebase.auth().signOut().then(function() {
-        console.log("Log Out correcto");
-        window.localStorage.setItem("UID", "null");
-        getuid = "";
-        console.log(getuid)
-        console.log(firebase.auth().currentUser)
-        window.localStorage.clear()
-        window.location.href="/categorias";
-      }).catch(function(error) {
-        // An error happened.
-      });
-    }
+    // Cargar un componente condicionalmente
 
-
- // Cargar un componente condicionalmente
-    
     let componente;
-    if(this.state.error){
-        // Hay un error, mostrar componente
-        componente=<Error mensaje='Debe seleccionar una posición en el mapa primero'/>
-    }else{
+    if (this.state.error) {
+      // Hay un error, mostrar componente
+      componente = <Error mensaje='Debe seleccionar una posición en el mapa primero' />
+    } else {
       // Mostrar 
-      componente=null;
+      componente = null;
     }
     return (
       <div className="page">
         <Container className='text-center'>
-        <Card>
-          <CardBody>
-          <div class="row">
-            <div class="col-xs-6 col-md-4">
-              <Card style={{ width: '20rem' }}>
+          <Card>
+            <CardBody>
+              <div class="row">
+                <div class="col-xs-6 col-md-4">
+                  <Card style={{ width: '20rem' }}>
                     <CardImg top width="100%" src={userPhotoDoc} />
-              </Card>
-          </div>
-          <div class="col-xs-6 col-md-8">
-                <div class="contenedor center-h center-v others"> 
-                  <h1>
-                  <CardTitle> {userNameDoc} </CardTitle>
-                  </h1>
+                  </Card>
+                </div>
+                <div class="col-xs-6 col-md-8">
+                  <div class="contenedor center-h center-v others">
+                    <h1>
+                      <CardTitle> {userNameDoc} </CardTitle>
+                    </h1>
+                  </div>
                 </div>
               </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-6 col-md-4">
-            <Card style={{ width: '20rem' ,height:'13rem'}}>
+              <div class="row">
+                <div class="col-xs-6 col-md-4">
+                  <Card style={{ width: '20rem', height: '13rem' }}>
                     <CardBody className='text-left'>
-                    <CardText></CardText>
+                      <CardText></CardText>
                       <CardText></CardText>
                       <CardTitle><h6>Información de contacto</h6></CardTitle>
                       <CardText></CardText>
@@ -220,45 +207,43 @@ class MyAccount extends Component {
                       <CardText></CardText>
                       <CardText></CardText>
                       <CardSubtitle>Telefono: {userTelephoneDoc} </CardSubtitle>
-                      <CardText></CardText>
-                      <button type="button" class="btn btn-outline-primary" onClick={onLogOut} >Salir de la cuenta</button>
                     </CardBody>
-              </Card>
-                  <Card style={{ width: '20rem',height:'16rem' }}>
-                          <CardBody className='text-left'>
-                          <CardTitle><h6>Registrar profesión</h6></CardTitle>
-                            <CardText>  Ingrese una profesión
-                        <Input name="workerProfession" onChange={this.commonChange} />
-                            </CardText>
-                            <button type="button" class="btn btn-outline-primary" onClick={onProfession} >Registrar profesión</button>
-                            <CardBody className='text-center'>
-                                {componente}
-                                </CardBody>
-                          </CardBody>
-                </Card>
-                <Card style={{ width: '20rem' ,height:'10rem'}}>
+                  </Card>
+                  <Card style={{ width: '20rem', height: '16rem' }}>
                     <CardBody className='text-left'>
-                        <CardTitle><h6>Mi profesión actual</h6></CardTitle>
-                        <CardText></CardText>
-                        <CardText></CardText>
-                        <CardSubtitle>Profesión: {workerProfessionDoc} </CardSubtitle>
-                        <CardText>  Eliminar profesión </CardText>
-                        <button type="button" class="btn btn-outline-primary" onClick={onDelete} >Eliminar profesión</button>
-                        <div id="loading" style={{display: "none"}} >Cargando...</div>
+                      <CardTitle><h6>Registrar profesión</h6></CardTitle>
+                      <CardText>  Ingrese una profesión
+                        <Input name="workerProfession" onChange={this.commonChange} />
+                      </CardText>
+                      <button type="button" class="btn btn-outline-primary" onClick={onProfession} >Registrar profesión</button>
+                      <CardBody className='text-center'>
+                        {componente}
+                      </CardBody>
                     </CardBody>
-                </Card>
-              </div>
-              <div class="col-xs-6 col-md-8">
+                  </Card>
+                  <Card style={{ width: '20rem', height: '10rem' }}>
+                    <CardBody className='text-left'>
+                      <CardTitle><h6>Mi profesión actual</h6></CardTitle>
+                      <CardText></CardText>
+                      <CardText></CardText>
+                      <CardSubtitle>Profesión: {workerProfessionDoc} </CardSubtitle>
+                      <CardText>  Eliminar profesión </CardText>
+                      <button type="button" class="btn btn-outline-primary" onClick={onDelete} >Eliminar profesión</button>
+                      <div id="loading" style={{ display: "none" }} >Cargando...</div>
+                    </CardBody>
+                  </Card>
+                </div>
+                <div class="col-xs-6 col-md-8">
 
-                  <MapExample/>
+                  <MapExample />
+                </div>
               </div>
-            </div>
             </CardBody>
           </Card>
-          </Container>
+        </Container>
         {/* <WorkerElectricist/> */}
       </div>
-      
+
     );
   }
 }

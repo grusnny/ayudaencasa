@@ -24,8 +24,7 @@ function Loginp() {
               </Container> 
             </FormGroup>
             <FormGroup>             
-              <Container className='text-center'>
-                
+              <Container className='text-center'>                
             </Container>  
             </FormGroup>
           </Form>
