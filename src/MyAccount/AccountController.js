@@ -1,6 +1,4 @@
 import React from 'react';
-import firebase from 'firebase'
-import { withRouter } from 'react-router-dom';
 
 function AccountController() {
 var usuario=JSON.parse(localStorage.getItem("data"));

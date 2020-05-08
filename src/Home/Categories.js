@@ -1,12 +1,9 @@
 import React from 'react';
 import {
-    Container, Row, Col, Card, CardImg, CardText, CardBody, Button
+    Container, Row, Col, Card, CardImg, CardText, CardBody
 } from 'reactstrap';
-import firebase from 'firebase'
 
 function App() {
-
-    const db = firebase.firestore();
     
     return (
         <Container className='text-center'>

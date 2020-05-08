@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import firebase from 'firebase'
-import { Link } from 'react-router-dom';
-import { Form, FormGroup, Label, Input, FormText, Container, Button } from 'reactstrap';
 import "../NavBar/NavBar.css";
 class NavBar extends Component {
 
@@ -32,7 +30,7 @@ class NavBar extends Component {
         <div class="collapse navbar-collapse" id="navbarColor03">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="/categorias">Home<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/categorias">Buscador<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/accountController">Mi Cuenta</a>

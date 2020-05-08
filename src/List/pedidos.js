@@ -1,24 +1,21 @@
 import React from 'react';
-import { Button, Container } from 'reactstrap';
+import { Container } from 'reactstrap';
 import firebase from "../firebase";
 import { CardPedidos } from './CardPedidos'
-import { render } from '@testing-library/react';
 const db = firebase.firestore();
 
 function Pedidos() {
 
 
-  var usuario=JSON.parse(localStorage.getItem("data"));
-
-  console.log(usuario.user.uid);
+  var usuario = JSON.parse(localStorage.getItem("data"));
   const [pedido, setPedido] = React.useState([]);
- 
+
 
   React.useEffect(() => {
-    
+
 
     const fetchData = async () => {
-      const data = await db.collection('pedido').where("uid","==",usuario.user.uid).get()
+      const data = await db.collection('pedido').where("uid", "==", usuario.user.uid).get()
       setPedido(data.docs.map(doc => ({ ...doc.data(), id: doc.id })))
     }
     fetchData()

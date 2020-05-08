@@ -1,15 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import "../Home/Home.css";
 import { Container } from 'reactstrap';
 import firebase from "../firebase";
 import { Map, Marker, Popup, TileLayer } from "react-leaflet";
-import { Icon } from "leaflet";
 import * as L from 'leaflet'
 import icon from '../Home/marker2.webp';
-import {
-    Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button
-} from 'reactstrap';
+import { Card, CardImg, CardText, CardBody,CardTitle } from 'reactstrap';
+
 var name;
 var profession;
 var mail;
@@ -17,7 +14,6 @@ var wid;
 var foto;
 var tel;
 const axios = require('axios');
-const db = firebase.firestore();
 var greenIcon = L.icon({
     iconUrl: icon,
     //shadowUrl: shadow,
@@ -54,8 +50,6 @@ const onE = (e) => {
             console.log(err);
         })
         .then(function () {
-            //loading.style.display = 'none';
-            console.log("Estoy aqui");
         });
 
 

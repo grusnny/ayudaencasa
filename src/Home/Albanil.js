@@ -1,15 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import "../Home/Home.css";
 import { Container } from 'reactstrap';
 import firebase from "../firebase";
 import { Map, Marker, Popup, TileLayer } from "react-leaflet";
-import { Icon } from "leaflet";
 import * as L from 'leaflet'
-import  icon from '../Home/marker2.webp';
-import {
-    Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button
-} from 'reactstrap';
+import icon from '../Home/marker2.webp';
+import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 var name;
 var profession;
 var mail;
@@ -17,51 +13,47 @@ var wid;
 var foto;
 var tel;
 const axios = require('axios');
-const db = firebase.firestore();
 var greenIcon = L.icon({
     iconUrl: icon,
     //shadowUrl: shadow,
 
-    iconSize:     [80, 80], // size of the icon
-    shadowSize:   [50, 64], // size of the shadow
-    iconAnchor:   [40, 40], // point of the icon which will correspond to marker's location
+    iconSize: [80, 80], // size of the icon
+    shadowSize: [50, 64], // size of the shadow
+    iconAnchor: [40, 40], // point of the icon which will correspond to marker's location
     shadowAnchor: [4, 62],  // the same for the shadow
-    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
+
 const onE = (e) => {
     e.preventDefault();
     console.log(name);
     console.log(profession);
-        var user = firebase.auth().currentUser;
-            //console.log(result);
-            const querystring = require('querystring');
-            axios.post('https://microservicio-dominio.herokuapp.com/Solicitud', querystring.stringify({  
-            uid: user.uid,
-            wname:name,
-            wprofession:profession,
-            wmail:mail,
-            wphoto:foto,
-            wid:wid,
-            wtel:tel
-         }))
-                .then(function(res) {
-                    if(res.status==200) {
-                        //mensaje.innerHTML = 'El nuevo Post ha sido almacenado con id: ' + res;
-                        window.location.href="/pedidos";
-                        console.log(res.status);
-                    }
-                    }).catch(function(err) {
-                        console.log(err);
-                    })
-                    .then(function() {
-                        //loading.style.display = 'none';
-                        console.log("Estoy aqui");
-                    });
+    var user = firebase.auth().currentUser;
+    const querystring = require('querystring');
+    axios.post('https://microservicio-dominio.herokuapp.com/Solicitud', querystring.stringify({
+        uid: user.uid,
+        wname: name,
+        wprofession: profession,
+        wmail: mail,
+        wphoto: foto,
+        wid: wid,
+        wtel: tel
+    }))
+        .then(function (res) {
+            if (res.status == 200) {
+                //mensaje.innerHTML = 'El nuevo Post ha sido almacenado con id: ' + res;
+                window.location.href = "/pedidos";
+                console.log(res.status);
+            }
+        }).catch(function (err) {
+            console.log(err);
+        })
+        .then(function () {
 
-
+        });
 
 }
-    function Albanil() {
+function Albanil() {
 
     const [worker, setWorker] = React.useState([])
     const [activeWorker, setActiveWorker] = React.useState(null);
@@ -105,17 +97,17 @@ const onE = (e) => {
                             }}
                         >
                             <div>
-                            <Card style={{ width: '12rem' }}>
-                    <CardImg top width="5%" src={foto=activeWorker.photo} />
-                    <CardBody>
-                        <CardTitle>Nombre: {name=activeWorker.name}</CardTitle>
-                        <CardText>Correo: {mail=activeWorker.mail}</CardText>                      
-                        <CardText>Profesión: {profession=activeWorker.profession}</CardText>
-                        <CardText>Telefono: {tel=activeWorker.telephone}</CardText>
-                        <CardText>{wid=activeWorker.uId}</CardText>
-                        <button type="button" className="btn btn-outline-primary" onClick={onE} >Contactar</button>
-                    </CardBody>
-                </Card>
+                                <Card style={{ width: '12rem' }}>
+                                    <CardImg top width="5%" src={foto = activeWorker.photo} />
+                                    <CardBody>
+                                        <CardTitle>Nombre: {name = activeWorker.name}</CardTitle>
+                                        <CardText>Correo: {mail = activeWorker.mail}</CardText>
+                                        <CardText>Profesión: {profession = activeWorker.profession}</CardText>
+                                        <CardText>Telefono: {tel = activeWorker.telephone}</CardText>
+                                        <CardText>{wid = activeWorker.uId}</CardText>
+                                        <button type="button" className="btn btn-outline-primary" onClick={onE} >Contactar</button>
+                                    </CardBody>
+                                </Card>
                             </div>
                         </Popup>
                     )}

@@ -1,10 +1,9 @@
-import React, { Component, useState } from 'react';
+import React, { Component} from 'react';
 import { withRouter } from 'react-router-dom';
 import firebase from 'firebase'
 import {
   Card, CardImg, CardText, CardBody, Input,
-  CardTitle, CardSubtitle, Button, Container,
-  Row, Col
+  CardTitle, CardSubtitle, Container,
 } from 'reactstrap';
 import "../MyAccount/MyAccount.css";
 import MapExample from '../MyAccount/map2';
@@ -35,7 +34,6 @@ class MyAccount extends Component {
     console.log('match', this.props.match);
 
     const db = firebase.firestore();
-    const [workerProfession, setWorkerProfession] = [];
 
     var usuario=JSON.parse(localStorage.getItem("data"));
   
@@ -96,11 +94,6 @@ class MyAccount extends Component {
     var userlatitud = window.localStorage.getItem("userLatDoc");
     var userlongitud = window.localStorage.getItem("userLngDoc");
 
-    var workerNameDoc = window.localStorage.getItem("workerNameDoc");
-    var workerMailDoc = window.localStorage.getItem("workerMailDoc");
-    var workerMailAltDoc = window.localStorage.getItem("workerMailAltDoc");
-    var workerPhotoDoc = window.localStorage.getItem("workerPhotoDoc");
-    var workerTelephoneDoc = window.localStorage.getItem("workerTelephoneDoc");
     var workerProfessionDoc = window.localStorage.getItem("workerProfessionDoc");
 
     const onProfession = () => {
