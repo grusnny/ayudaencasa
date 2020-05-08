@@ -8,9 +8,9 @@ class NavBar extends Component {
   render() {
 
     var text = "Aún no has iniciado sesión";
-    var userNameDoc = window.localStorage.getItem("userNameDoc");
-    if (userNameDoc != null) {
-      text = userNameDoc
+    var usuario=JSON.parse(localStorage.getItem("data"));
+    if (usuario != null) {
+      text = usuario.user.displayName;
     }
 
     const onLogOut = () => {

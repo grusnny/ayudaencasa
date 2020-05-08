@@ -44,7 +44,6 @@ function LoginForm() {
       uId: user.uid }))
            .then(function(res) {
               if(res.status==200) {
-                //mensaje.innerHTML = 'El nuevo Post ha sido almacenado con id: ' + res;
                 console.log(res.status);
                 console.log(res.data);
               }
@@ -55,8 +54,8 @@ function LoginForm() {
                 loading.style.display = 'none';
                 console.log("Estoy aqui");
             });
-    }
-    window.location.href="/categorias";
+    }    
+    window.location.href="/accountController";
   }
 
   return (
