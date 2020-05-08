@@ -26,7 +26,23 @@ export const CardPedidos = ({ pedido }) => {
                         <CardSubtitle>Telefono: {wtel}</CardSubtitle>
                         <CardSubtitle>Profesión: {wprofession}</CardSubtitle>
                         <CardText>Estado de la petición {state}</CardText>
-                        <Button> Pagar</Button>
+                        <form method="post" action="https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/">
+                            <input name="merchantId" type="hidden" value="508029"/>
+                            <input name="accountId" type="hidden" value="512321"/>
+                            <input name="description" type="hidden" value="Pago Ayuda en casa"/>
+                            <input name="referenceCode" type="hidden" value="Ayuda en casa"/>
+                            <input name="amount" type="hidden" value="20000"/>
+                            <input name="tax" type="hidden" value="0"/>
+                            <input name="taxReturnBase" type="hidden" value="0"/>
+                            <input name="currency" type="hidden" value="COP"/>
+                            <input name="signature" type="hidden" value="f50b5ff782b831f293f8f2369b15b9e2"/>
+                            <input name="test" type="hidden" value="1"/>
+                            <input name="buyerEmail" type="hidden" value={wmail}/>
+                            <input name="responseUrl" type="hidden" value="http://www.test.com/response"/>
+                            <input name="confirmationUrl" type="hidden" value="http://www.test.com/confirmation"/>
+                            <input name="Submit" type="submit" className="btn btn-outline-primary" value="Pagar"/>
+                        </form>
+
                     </CardBody>
                 </Card>
             </div>
