@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 import firebase from "../firebase";
 import { CardPedidos } from './CardPedidos'
 const db = firebase.firestore();
@@ -26,11 +26,9 @@ function Pedidos() {
     <div className="App">
       <Container className='text-center'>
         <p>Revisa las peticiones de trabajos que has solicitado: </p>
-        <ul>
-          {pedido.map(pedido => (
-            <CardPedidos pedido={pedido} />
-          ))}
-        </ul>
+            {pedido.map(pedido => (
+              <CardPedidos pedido={pedido} />
+            ))}
       </Container>
     </div>
   );
