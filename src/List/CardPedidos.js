@@ -3,6 +3,10 @@ import {
     Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle, Button
 } from 'reactstrap';
+import firebase from "../firebase";
+import MD5 from'crypto-js/md5';
+ 
+
 
 export const CardPedidos = ({ pedido }) => {
 
@@ -14,7 +18,9 @@ export const CardPedidos = ({ pedido }) => {
     const [wprofession, setfechaPet] = React.useState(pedido.wprofession)
     const [state, setState] = React.useState(pedido.state)
     const [wphoto, setWPhoto] = React.useState(pedido.wphoto)
-
+    var user = firebase.auth().currentUser; 
+    var hash= MD5("4Vj8eK4rloUd272L48hsrarnUA~508029~Ayudaencasa~20000~COP");
+    console.log(hash+" codigo");
     return (
         <>
             <div>
@@ -30,15 +36,15 @@ export const CardPedidos = ({ pedido }) => {
                             <input name="merchantId" type="hidden" value="508029"/>
                             <input name="accountId" type="hidden" value="512321"/>
                             <input name="description" type="hidden" value="Pago Ayuda en casa"/>
-                            <input name="referenceCode" type="hidden" value="Ayuda en casa"/>
+                            <input name="referenceCode" type="hidden" value="Ayudaencasa"/>
                             <input name="amount" type="hidden" value="20000"/>
                             <input name="tax" type="hidden" value="0"/>
                             <input name="taxReturnBase" type="hidden" value="0"/>
                             <input name="currency" type="hidden" value="COP"/>
-                            <input name="signature" type="hidden" value="f50b5ff782b831f293f8f2369b15b9e2"/>
+                            <input name="signature" type="hidden" value={hash} />
                             <input name="test" type="hidden" value="1"/>
-                            <input name="buyerEmail" type="hidden" value={wmail}/>
-                            <input name="responseUrl" type="hidden" value="http://www.test.com/response"/>
+                            <input name="buyerEmail" type="hidden" value={user.email}/>
+                            <input name="responseUrl" type="hidden"  value="http://www.test.com/response"/>
                             <input name="confirmationUrl" type="hidden" value="http://www.test.com/confirmation"/>
                             <input name="Submit" type="submit" className="btn btn-outline-primary" value="Pagar"/>
                         </form>
@@ -48,4 +54,5 @@ export const CardPedidos = ({ pedido }) => {
             </div>
         </>
     )
+
 }

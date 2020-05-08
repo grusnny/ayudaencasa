@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
     "babel-plugin-react-html-attrs": "*",
+    "crypto-js": "^4.0.0",
     "firebase": "^7.9.3",
     "leaflet": "^1.6.0",
     "react": "^16.13.0",
