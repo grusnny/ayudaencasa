@@ -1,11 +1,11 @@
 import React from 'react';
-import "../Home/Home.css";
+import "../Home/Albanil.css";
 import { Container } from 'reactstrap';
 import firebase from "../firebase";
 import { Map, Marker, Popup, TileLayer } from "react-leaflet";
 import * as L from 'leaflet'
 import icon from '../Home/marker2.webp';
-import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
 var name;
 var profession;
 var mail;
@@ -101,10 +101,10 @@ function Albanil() {
                                     <CardImg top width="5%" src={foto = activeWorker.photo} />
                                     <CardBody>
                                         <CardTitle>Nombre: {name = activeWorker.name}</CardTitle>
-                                        <CardText>Correo: {mail = activeWorker.mail}</CardText>
+                                        <CardSubtitle>Correo: {mail = activeWorker.mail}</CardSubtitle>
                                         <CardText>Profesión: {profession = activeWorker.profession}</CardText>
-                                        <CardText>Telefono: {tel = activeWorker.telephone}</CardText>
-                                        <CardText>{wid = activeWorker.uId}</CardText>
+                                        <CardSubtitle>Telefono: {tel = activeWorker.telephone}</CardSubtitle>
+                                        <CardSubtitle>{wid = activeWorker.uId}</CardSubtitle>
                                         <button type="button" className="btn btn-outline-primary" onClick={onE} >Contactar</button>
                                     </CardBody>
                                 </Card>
