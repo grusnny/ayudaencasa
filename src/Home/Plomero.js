@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "../Home/Home.css";
 import { Container } from 'reactstrap';
 import firebase from "../firebase";
 import { Map, Marker, Popup, TileLayer } from "react-leaflet";
 import * as L from 'leaflet'
 import icon from '../Home/marker2.webp';
-import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
+import {
+    Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle,
+    ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem
+} from 'reactstrap';
 import "../Home/Plomero.css";
 
 var name;
@@ -51,7 +54,7 @@ const onE = (e) => {
             console.log(err);
         })
         .then(function () {
-            
+
         });
 
 
@@ -61,6 +64,9 @@ function Plomero() {
 
     const [worker, setWorker] = React.useState([])
     const [activeWorker, setActiveWorker] = React.useState(null);
+    const [btnDropright, setOpen] = useState(false);
+
+    const toggle = () => setOpen(!btnDropright);
 
     React.useEffect(() => {
         const fetchData = async () => {
@@ -74,7 +80,20 @@ function Plomero() {
 
     return (
         <div className="App">
-            <Container className='text-center'>
+            <Container className='text-left'>
+                <ButtonDropdown direction="right" isOpen={btnDropright} toggle={toggle}>
+                    <DropdownToggle caret>
+                        Categorias
+      </DropdownToggle>
+                    <DropdownMenu>
+                        <DropdownItem header>Selecciona una nueva categoria</DropdownItem>
+                        <DropdownItem> <a class="nav-link" href="/albanil">Albañiles</a></DropdownItem>
+                        <DropdownItem divider />
+                        <DropdownItem> <a class="nav-link" href="/Home">Electricistas</a></DropdownItem>
+                        <DropdownItem divider />
+                        <DropdownItem> <a class="nav-link" href="/plomero">Plomeros</a></DropdownItem>
+                    </DropdownMenu>
+                </ButtonDropdown>
                 <Map center={[6.267417, -75.568389]} zoom={15}>
                     <TileLayer
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
