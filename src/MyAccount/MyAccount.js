@@ -173,37 +173,36 @@ class MyAccount extends Component {
             <CardBody>
               <div class="row">
                 <div class="col-xs-6 col-md-4">
-                  <Card style={{ width: '20rem' }}>
+                  <Card style={{ width: '100%' }}>
                     <CardImg top width="100%" src={userPhotoDoc} />
                   </Card>
                 </div>
                 <div class="col-xs-6 col-md-8">
                   <div class="contenedor center-h center-v others">
                     <h1>
-                      <CardTitle> {userNameDoc} </CardTitle>
+                      <CardTitle top width="100%"> {userNameDoc} </CardTitle>
                     </h1>
+
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-xs-6 col-md-4">
-                  <Card style={{ width: '20rem', height: '13rem' }}>
+                  <Card style={{ width: '100%', height: '13rem' }}>
                     <CardBody className='text-left'>
                       <CardText></CardText>
                       <CardText></CardText>
                       <CardTitle><h6>Información de contacto</h6></CardTitle>
+                      <CardText>Correo: {userMailDoc} </CardText>
                       <CardText></CardText>
                       <CardText></CardText>
-                      <CardSubtitle>Correo: {userMailDoc} </CardSubtitle>
+                      <CardText>Correo alternativo: {userMailAltDoc} </CardText>
                       <CardText></CardText>
                       <CardText></CardText>
-                      <CardSubtitle>Correo alternativo: {userMailAltDoc} </CardSubtitle>
-                      <CardText></CardText>
-                      <CardText></CardText>
-                      <CardSubtitle>Telefono: {userTelephoneDoc} </CardSubtitle>
+                      <CardText>Telefono: {userTelephoneDoc} </CardText>
                     </CardBody>
                   </Card>
-                  <Card style={{ width: '20rem', height: '16rem' }}>
+                  <Card style={{ width: '100%', height: '16rem' }}>
                     <CardBody className='text-left'>
                       <CardTitle><h6>Registrar profesión</h6></CardTitle>
                       <CardText>  Ingrese una profesión
@@ -215,7 +214,7 @@ class MyAccount extends Component {
                       </CardBody>
                     </CardBody>
                   </Card>
-                  <Card style={{ width: '20rem', height: '10rem' }}>
+                  <Card style={{ width: '100%', height: '10rem' }}>
                     <CardBody className='text-left'>
                       <CardTitle><h6>Mi profesión actual</h6></CardTitle>
                       <CardText></CardText>

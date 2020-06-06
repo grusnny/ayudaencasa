@@ -77,10 +77,10 @@ function Albanil() {
     return (
         <div className="App">
             <Container className='text-left'>
-                <ButtonDropdown direction="right" isOpen={btnDropright} toggle={toggle}>
-                    <DropdownToggle caret>
+                <ButtonDropdown  direction="right" isOpen={btnDropright} toggle={toggle} >
+                    <DropdownToggle caret color="info">
                         Categorias
-      </DropdownToggle>
+                     </DropdownToggle>
                     <DropdownMenu>
                         <DropdownItem header>Selecciona una nueva categoria</DropdownItem>
                         <DropdownItem> <a class="nav-link" href="/albanil">Albañiles</a></DropdownItem>

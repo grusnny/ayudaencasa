@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import firebase from 'firebase'
 import "../NavBar/NavBar.css";
+import Example from "../Pushbar/pushbar"
+
 class NavBar extends Component {
 
   render() {
@@ -23,10 +25,10 @@ class NavBar extends Component {
 
     return (
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">AyudaEnCasa</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        <a class="navbar-brand" href="#">AyudaEnCasa</a> 
+        <div class="navbar-toggler" data-toggle="collapse" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+        <Example/>
+        </div>
         <div class="collapse navbar-collapse" id="navbarColor03">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
@@ -43,8 +45,8 @@ class NavBar extends Component {
             </li>
           </ul>
           <form class="form-inline my-2 my-lg-0">
-            <h4> {text}</h4>
-            <button class="btn btn-secondary my-2 my-sm-0" onClick={onLogOut}>Cerrar sesión</button>
+            <h6> {text}</h6>
+            <button class="btn btn-outline-info my-2 my-sm-0" onClick={onLogOut}>Cerrar sesión</button>
           </form>
         </div>
       </nav>
